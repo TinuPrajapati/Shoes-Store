@@ -2,30 +2,30 @@ import Button from "./Button";
 import { useState } from "react";
 
 export default function Right({ items }) {
-  let [totalPrice, setPrice] = useState(0);
-  
-  let height = 6
+  let height = 6,totalPrice=0;
   items.forEach(item => {
-    totalPrice = Math.ceil(totalPrice += item.price);
-    height+=4;
+    totalPrice += item.price;
+    height+=4.2;
   });
-
-
-  const onUpdatePrice = (newPrice) => {
-    console.log(newPrice);
-    console.log(totalPrice);
-    
-    
-    setPrice(totalPrice+Math.ceil(newPrice));
+  
+  let [price, setPrice] = useState(0);
+  const onUpdatePrice = (newPrice,name) => {
+    setPrice(price+newPrice);
+    items.map((el,index)=>{
+      if(el.shoesName===name){
+        items.splice(index,1)
+      }
+    })
   };
+  if(totalPrice != 0){totalPrice+=price;}
 
   return (
     <div className="w-2/5 bg-slate-400 text-white  rounded-xl p-4 text-xl flex flex-col" style={{height:`${height}rem`}}>
       <h3 className="text-2xl h-8">Cart</h3>
-      <div className="w-full">
+      <div className="w-full flex flex-col gap-1">
         {items.map((item) => {
           return(
-          <div className="w-full h-16 mb-1 flex bg-white text-black rounded-lg shadow-lg  items-center px-2 gap-[1vw] py-1">
+          <div className="w-full h-16 flex bg-white text-black rounded-lg shadow-lg  items-center px-2 gap-[1vw] py-1">
             <img
               src={item.image}
               alt=""
