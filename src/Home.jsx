@@ -34,9 +34,9 @@ function Home() {
   return (
     <div className="w-full px-12 py-7 flex gap-8">
       <div className="w-3/5 grid grid-cols-2 gap-8 ">
-        {shoes.map((el) => {
+        {shoes.map((el,idx) => {
           return (
-            <div className="rounded-xl h-96 flex flex-col border-2 overflow-hidden shadow-xl hover:scale-105 delay-500">
+            <div key={idx} className="rounded-xl h-96 flex flex-col border-2 overflow-hidden shadow-xl hover:scale-105 transition">
               <img src={el.image} alt={el.shoesName} className="h-3/5 w-full object-cover" />
               <div className="flex flex-col justify-evenly items-center h-2/5 bg-yellow-500 text-white text-xl font-bold">
                 <h2 className="font-serif">{el.shoesName}</h2>

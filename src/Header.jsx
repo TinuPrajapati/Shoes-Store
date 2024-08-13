@@ -6,9 +6,9 @@ function Header(){
             </div>
             
             <ul className="flex items-center gap-10 ">
-                <li className="hover:scale-125 delay-300">Home</li>
-                <li className="hover:scale-125 delay-300">Categories</li>
-                <li className="hover:scale-125 delay-300">About Us</li>
+                <li className="hover:scale-125 transition">Home</li>
+                <li className="hover:scale-125 transition">Categories</li>
+                <li className="hover:scale-125 transition">About Us</li>
             </ul>
         </header>
     )

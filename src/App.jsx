@@ -1,5 +1,5 @@
-import Header from "./Header"
-import Home from "./Home"
+import Header from "./Header.jsx"
+import Home from "./Home.jsx"
 
 function App() {
 
