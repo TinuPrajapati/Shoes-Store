@@ -1,20 +1,14 @@
 import Button from "./Button";
 import { useState, useEffect } from "react";
 
-export default function Right({ items }) {
-  let height = 6,totalPrice = 0;
-  items.forEach((item) => {
-    totalPrice += item.price;
+export default function Right({ items ,totalPrice,setTotalPrice}) {
+  let height = 6;
+  items.forEach(() => {
     height += 4.2;
   });
 
-  const [price, setPrice] = useState(totalPrice);
-  useEffect(() => {
-    setPrice(totalPrice);
-  }, [items]);
-
-  const onUpdatePrice = (newPrice, name) => {
-    setPrice(price + newPrice);
+  // remove items from cart
+  const onUpdateList = (name) => {
     items.map((el, index) => {
       if (el.shoesName === name) {
         items.splice(index, 1);
@@ -34,20 +28,19 @@ export default function Right({ items }) {
             <div className="w-full h-16 flex bg-white text-black rounded-lg shadow-lg  items-center px-2 gap-[1vw] py-1">
               <img
                 src={item.image}
-                alt=""
                 className="w-[15%] h-full rounded-md"
               />
               <div className="w-[67%]">
                 <p>{item.shoesName}</p>
                 <p className="text-sm">${item.price}</p>
               </div>
-              <Button send={item} onUpdatePrice={onUpdatePrice} />
+              <Button send={item} onUpdateList={onUpdateList}  setPrice={setTotalPrice}/>
             </div>
           );
         })}
       </div>
       <p className="text-center text-2xl h-8 ">
-        Total: $<span>{price}</span>
+        Total: $<span>{totalPrice}</span>
       </p>
     </div>
   );

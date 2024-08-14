@@ -26,9 +26,16 @@ function Home() {
   ];
 
   const [cart, setCart] = useState([]);
+  let [totalPrice, setTotalPrice] = useState(0); 
 
   const addCart = (shoes) => {
-    setCart([...cart, shoes]);
+    if (cart.find((el) => el.shoesName === shoes.shoesName)) {
+      alert("This item is already added");
+    } else {
+      setCart([...cart, shoes]);
+
+    }
+    
   };
 
   return (
@@ -46,13 +53,14 @@ function Home() {
                 <button className="bg-blue-600 px-4 py-2 rounded-lg shadow-lg font-mono active:scale-95"
                   onClick={() => {
                     addCart(el);
+                    setTotalPrice(totalPrice + el.price);
                   }} > Add to Cart </button>
               </div>
             </div>
           );
         })}
       </div>
-      <Right items={cart} />
+      <Right items={cart} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>
     </div>
   );
 }

@@ -1,21 +1,25 @@
 import { useState } from "react";
 
-export default function Button({ send, onUpdatePrice ,removeItem}) {
+export default function Button({ send, onUpdateList ,setPrice}) {
   let [count, setCount] = useState(1);
 
   const add = () => {
     setCount(count + 1);
-    onUpdatePrice(send.price );
+    setPrice(prev=>{
+      return prev + send.price
+    })
   };
 
   const remove = () => {
     if (count > 1) {
       setCount(count - 1);
-      onUpdatePrice(-send.price);
     } else {
-      setCount(0);
-      onUpdatePrice(-send.price,send.shoesName);
+      setCount(1);
+      onUpdateList(send.shoesName);
     }
+    setPrice(prev=>{
+      return prev - send.price
+    })
   };
 
   return (
